@@ -1,5 +1,7 @@
 const noop = () => {}
 test('can be used in place of `var`', () => {
+  // Declare bandName using 'let'
+  // Declare isBestBand using 'let'
   let bandName = 'Queen'
   let isBestBand = true
   expect(bandName).toBe('Queen')
