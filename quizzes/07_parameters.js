@@ -1,25 +1,24 @@
 import log from './pretty-log'
 
-function basicDefaultParam() {
+function basicDefaultParam(n=10) {
   return [randGen(), randGen(4), randGen(0)]
   function randGen(n) {
     // refactor with default parameter to handle n = undefined
-    n = n || 10
-
     return Math.floor(n * Math.random())
   }
 }
-// log(basicDefaultParam())
+ //log(basicDefaultParam())
 
 function defaultParamsAsExpressions() {
   return getCandy('twix', 'king')
 
-  function getCandy(kind, size, upperKind, callback) {
-    requiredParam('kind', kind)
-    requiredParam('size', size)
-    upperKind = upperKind === undefined ? kind.toUpperCase() : upperKind
-    callback = callback === undefined ? function noop() {} : callback
-
+  function getCandy(
+    kind = requiredParam('kind', kind), 
+    size = requiredParam('size', size), 
+    upperKind = kind.toUpperCase(), 
+    callback = function noop() {},
+    ) {
+  
     const result = {kind, size, upperKind}
     callback(result)
     return result
@@ -42,13 +41,9 @@ function restParams() {
   ]
   return weatherOnDemand(availableCities, 'Bali', 'London')
 
-  function weatherOnDemand() {
+  function weatherOnDemand(weatherArray, ...cities) {
     // Use default parameters, argument destructuring
     // and other Array methods, to refactor this
-    const allArgs = Array.prototype.slice.call(arguments)
-    const weatherArray = allArgs[0]
-    const cities = allArgs.slice(1)
-
     return weatherArray.filter(cityData => {
       return cities.indexOf(cityData.city) !== -1
     })
@@ -67,19 +62,16 @@ function destructureWithDefaultParams() {
   // the x-coordinate (x), and y-coordinate(y)
   // Not all of these fields would always be provided
   // When not provided, r defaults to 1, while x and y defaults to 0
-  function computeCircleArea(obj = {}) {
+  function computeCircleArea({r=1, x=0, y=0} = {}) {
     /* Uncomment this to test what you are actually passing to the function*/
     // console.log(arguments);
 
     // TODO: Remove all references to obj,
     // using param destructuring
-    const radius = obj.r || 1.0
-    const xCoordinate = obj.x || 0.0
-    const yCoordinate = obj.y || 0.0
 
-    const area = Math.PI * radius * radius
+    const area = Math.PI * r * r
 
-    return `Circle at (${xCoordinate}, ${yCoordinate}), with radius ${radius}, has area = ${area.toFixed(
+    return `Circle at (${x}, ${y}), with radius ${r}, has area = ${area.toFixed(
       2,
     )}`
   }
