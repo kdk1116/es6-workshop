@@ -78,7 +78,9 @@ function temporalDeadZone() {
   console.log(myConst)
 
   var myVar = 'var'
+  //  this will error out on myLet + myConst because var is hoisted up but let and const don't
   let myLet = 'let'
+  // this it the TDZ for myConst
   const myConst = 'const'
   return {myVar: myVar, myLet: myLet, myConst: myConst}
 }

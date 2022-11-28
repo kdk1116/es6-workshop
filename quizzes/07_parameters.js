@@ -1,8 +1,9 @@
+import { noop } from 'lodash'
 import log from './pretty-log'
 
-function basicDefaultParam(n=10) {
+function basicDefaultParam() {
   return [randGen(), randGen(4), randGen(0)]
-  function randGen(n) {
+  function randGen(n = 10) {
     // refactor with default parameter to handle n = undefined
     return Math.floor(n * Math.random())
   }
@@ -13,12 +14,11 @@ function defaultParamsAsExpressions() {
   return getCandy('twix', 'king')
 
   function getCandy(
-    kind = requiredParam('kind', kind), 
-    size = requiredParam('size', size), 
-    upperKind = kind.toUpperCase(), 
+    kind = requiredParam('kind'),
+    size = requiredParam('size'),
+    upperKind = kind.toUpperCase(),
     callback = function noop() {},
-    ) {
-  
+  ) {
     const result = {kind, size, upperKind}
     callback(result)
     return result
@@ -30,7 +30,7 @@ function defaultParamsAsExpressions() {
     }
   }
 }
-// log(defaultParamsAsExpressions())
+ //log(defaultParamsAsExpressions())
 
 function restParams() {
   const availableCities = [
@@ -62,22 +62,23 @@ function destructureWithDefaultParams() {
   // the x-coordinate (x), and y-coordinate(y)
   // Not all of these fields would always be provided
   // When not provided, r defaults to 1, while x and y defaults to 0
-  function computeCircleArea({r=1, x=0, y=0} = {}) {
+  function computeCircleArea({radius = 1,x = 0,y = 0,} = {
+  }) {
     /* Uncomment this to test what you are actually passing to the function*/
     // console.log(arguments);
 
     // TODO: Remove all references to obj,
     // using param destructuring
 
-    const area = Math.PI * r * r
+    const area = Math.PI * radius * radius
 
-    return `Circle at (${x}, ${y}), with radius ${r}, has area = ${area.toFixed(
+    return `Circle at (${x}, ${y}), with radius ${radius}, has area = ${area.toFixed(
       2,
     )}`
   }
 }
 
-// log(destructureWithDefaultParams())
+//log(destructureWithDefaultParams())
 
 /*
 

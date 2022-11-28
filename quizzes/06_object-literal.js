@@ -7,11 +7,7 @@ function shorthandPropertyNames() {
   const green = Math.floor(Math.random() * 256)
   const blue = Math.floor(Math.random() * 256)
 
-  return {
-    red,
-    green,
-    blue,
-  }
+  return {red, green, blue}
 }
 // log(shorthandPropertyNames())
 
@@ -22,9 +18,9 @@ function proto() {
     overriddenProp: 'parent overridden?',
   }
   const child = {
-    __proto__:parent,
+    __proto__: parent,
     childProp: 'child',
-    overriddenProp: 'parent overriden!'
+    overriddenProp: 'parent overridden!',
   }
   // getAllPropsInObject returns an object with
   // `inheritedProps` and `ownProps` objects.
@@ -41,7 +37,7 @@ function methodShorthand() {
   }
   return greeter.sayHi('Nancy')
 }
- //log(methodShorthand())
+// log(methodShorthand())
 
 function methodSuperCalls() {
   // refactor fileTaxes on the child using method shorthand and use `super` instead
@@ -49,7 +45,7 @@ function methodSuperCalls() {
     doFilingOfTaxes() {
       return 'taxes filed'
     },
-    fileTaxes: function fileTaxes() {
+    fileTaxes() {
       return this.doFilingOfTaxes()
     },
   }
@@ -58,8 +54,6 @@ function methodSuperCalls() {
     taxesFiledCount: 0,
     fileTaxes() {
       this.taxesFiledCount++
-      //return Object.getPrototypeOf(this).fileTaxes.call(this) this is calling the parent of this object and calling the fileTaxes method upon itself
-      // so its easier just to call the parent of the object and call it upon itself with super
       return super.fileTaxes.call(this)
     },
   }
@@ -71,12 +65,12 @@ function methodSuperCalls() {
 function computedPropertyNames() {
   function getCar(make, model) {
     return {
-      [make.toLowerCase()]: model
+      [make.toLowerCase()]: model,
     }
   }
   return getCar('Hyundai', 'Accent')
 }
-// log(computedPropertyNames())
+//log(computedPropertyNames())
 
 // helpers
 
