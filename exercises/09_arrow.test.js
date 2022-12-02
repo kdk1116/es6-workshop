@@ -52,18 +52,14 @@ test('can make array filter chains more managable', () => {
 
   // REPLACE ALL REGULAR FUNCTIONS WITH ARROW FUNCTIONS
   const shoppingList = data
-    .filter(function(d) {
-      return d.type != 'Widget'
-    }) // Remove Widgets
-    .filter(function(d) {
-      return d.price < 5
-    }) // Find only remaining items with price < 5
-    .sort(function(a, b) {
-      return a.qty - b.qty
-    }) // Sort by quantity, desc
-    .map(function(d) {
-      return d.name
-    }) // Pull just the name from each item
+    .filter((d) => d.type != 'Widget'
+    ) // Remove Widgets
+    .filter((d) => d.price < 5
+    ) // Find only remaining items with price < 5
+    .sort((a, b) => a.qty - b.qty
+    ) // Sort by quantity, desc
+    .map((d) => d.name
+    ) // Pull just the name from each item
 
   expect(shoppingList.shift()).toBe('Bacon')
   expect(shoppingList.shift()).toBe('JT Best Hits')
