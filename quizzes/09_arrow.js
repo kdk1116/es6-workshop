@@ -77,17 +77,21 @@ function context() {
     ],
     display() {
       // TODO: refactor with arrow function
-      return this.data.map(function populationStringMapper(element) {
-        return `Population in ${element.city} is ${element.value} ${this.unit}`
-      }, this) // passing `this` as second argument to bind properly
+      // proving this can't be bound to an annoymous function
+      const fn = () => this
+      console.log(fn.bind('hey')())
+      return this.data.map(element => (
+        `Population in ${element.city} is ${element.value} ${this.unit}`
+      )) // passing `this` as second argument to bind properly
     },
   }
   return population.display()
 }
 // log(context())
 
-function noBind() {
+function noBind() { 
   // what will this function return?
+  // proves that annoymous function can't bind this to the parent
   const user = {
     id: 42,
     getIdGetter() {
