@@ -46,9 +46,13 @@ function mergeObjects() {
       h: 'g from obj2',
     },
   }
-  return Object.assign({}, obj1, obj2)
+  return {
+    ...obj1,
+    ...obj2,
+  }
+  //return Object.assign({}, obj1, obj2)
 }
-// log(mergeObjects())
+ log(mergeObjects())
 
 function spreadString() {
   return join('--', 'PayPal')
@@ -57,7 +61,7 @@ function spreadString() {
     return [...string].join(delimiter)
   }
 }
-// log(spreadString())
+ //log(spreadString())
 
 function restString() {
   // what does this return?

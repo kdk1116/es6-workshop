@@ -1,6 +1,10 @@
 test('can replace traditional functions', () => {
   let fnMultiply, arrowMultiply
+  fnMultiply = function (a,b) {
+    return a * b
+  }
 
+  arrowMultiply = (a, b) => a * b
   // Write two functions that take two params and return their product
   // For 'fnMultiply', set it equal to a regular function
   // For 'arrowMultiply', set it equal to an arrow function
@@ -12,9 +16,7 @@ test('can replace traditional functions #2', () => {
   const nums = [2, 5, 10]
   // Replace the 'function' in this 'map' call with an arrow function.
   // Hint: you shouldn't have any braces or 'return' after you are done
-  const squares = nums.map(function(num) {
-    return num * num
-  })
+  const squares = nums.map(num => num * num)
 
   expect(squares.shift()).toBe(4)
   expect(squares.shift()).toBe(25)
@@ -27,9 +29,7 @@ test('binds `this` to the eval scope, not the runtime scope', () => {
   const person = {
     name: 'Aaron',
     greetFriends: function(friends) {
-      return friends.map(function(friend) {
-        return this.name + ' greets to ' + friend
-      })
+      return friends.map(friend => this.name + ' greets to ' + friend)
     },
   }
 
@@ -52,18 +52,14 @@ test('can make array filter chains more managable', () => {
 
   // REPLACE ALL REGULAR FUNCTIONS WITH ARROW FUNCTIONS
   const shoppingList = data
-    .filter(function(d) {
-      return d.type != 'Widget'
-    }) // Remove Widgets
-    .filter(function(d) {
-      return d.price < 5
-    }) // Find only remaining items with price < 5
-    .sort(function(a, b) {
-      return a.qty - b.qty
-    }) // Sort by quantity, desc
-    .map(function(d) {
-      return d.name
-    }) // Pull just the name from each item
+    .filter((d) => d.type != 'Widget'
+    ) // Remove Widgets
+    .filter((d) => d.price < 5
+    ) // Find only remaining items with price < 5
+    .sort((a, b) => a.qty - b.qty
+    ) // Sort by quantity, desc
+    .map((d) => d.name
+    ) // Pull just the name from each item
 
   expect(shoppingList.shift()).toBe('Bacon')
   expect(shoppingList.shift()).toBe('JT Best Hits')
@@ -74,7 +70,7 @@ test('can make array filter chains more managable', () => {
 http://ws.kcd.im/?ws=ES6+and+Beyond&e=Arrow+Functions&em=
 */
 test('I submitted my elaboration and feedback', () => {
-  const submitted = false // change this when you've submitted!
+  const submitted = true // change this when you've submitted!
   expect(true).toBe(submitted)
 })
 ////////////////////////////////
