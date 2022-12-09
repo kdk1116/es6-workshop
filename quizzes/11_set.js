@@ -14,17 +14,24 @@ function unique() {
   s.add(obj)
   s.add({a: 45, b: 50})
   return s
-}
+} // this is referential equality and works because obj is a different object that points to the same reference as the s.add{}
 // console.log(unique())
+
+function referentialEquality() {
+	const obj1 = {a:45, b:50}
+    const obj2 = {a:45, b:50}
+    return obj1 === obj2
+}
+console.log(referentialEquality())
 
 function initializeSet() {
   const arr = [1, 5, 7, 2, 9, 4]
   // TODO: change the following line
   // so that the Set t has array's contents
-  const set = new Set()
+  const set = new Set(arr)
   return set
 }
-// console.log(initializeSet())
+console.log(initializeSet())
 
 function setInfo() {
   const obj = {a: 42}
