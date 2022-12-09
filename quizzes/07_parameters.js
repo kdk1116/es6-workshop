@@ -8,7 +8,7 @@ function basicDefaultParam() {
     return Math.floor(n * Math.random())
   }
 }
- //log(basicDefaultParam())
+ log(basicDefaultParam())
 
 function defaultParamsAsExpressions() {
   return getCandy('twix', 'king')

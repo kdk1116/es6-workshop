@@ -1,5 +1,8 @@
 function basicMap() {
   const map = new Map()
+  map.set('a', 3)
+  map.set({v:5, k:7}, 7)
+  map.set(() => {}, 8)
   // TODO: add "a" as key, 3 as value
   // TODO: key is {v: 5, j: 7}, value is 7
   // TODO: key is a noop function, value is 8
@@ -11,7 +14,12 @@ function initializeMap() {
   // how could we create the same kind
   // of map like we have above, except
   // do it when we call new Map()?
-  const map = new Map()
+  
+  const map = new Map([
+    ['a', 3],
+    [{v: 5, j: 7}, 7],
+    [new Map(), 8] 
+  ])
   return map
 }
 // console.log(initializeMap())
@@ -29,16 +37,23 @@ function uniquePair() {
 
 function mapInfo() {
   const objKey = {awesome: true}
-  const map = new Map([[objKey, 42]])
-  // how do we get `objKey`?
+  const map = new Map([
+    [objKey, 42], 
+    [{}, 'hey'],
+    [45, true],
+  ])
+  // how do we get `objKey`? 4:21:19
+  const [...keys] = map.keys()
+  const [...values] = map.values()
+  const [...entries] = map.entries()
   return {
-    objValue: map[objKey],
-    mapSize: Object.keys(map).length,
-    hasTrue: map.hasOwnProperty(true),
-    has32: map.hasOwnProperty(32),
-    keys: Object.keys(map),
-    values: Object.keys(map).map(key => map[key]),
-    entries: Object.keys(map).map(key => [key, map[key]]),
+    objValue: map.get(objKey),
+    mapSize: map.size,
+    has45: map.has(45),
+    has32: map.has(32),
+    keys,
+    values,
+    entries,
   }
 }
 // console.log(mapInfo())

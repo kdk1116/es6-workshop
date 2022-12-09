@@ -7,7 +7,6 @@ function basicSet() {
   return set
 }
 // console.log(basicSet())
-
 function unique() {
   // What do you think this will return?
   const obj = {a: 45, b: 50}
@@ -32,15 +31,16 @@ function setInfo() {
   const set = new Set([1, 2, obj, 3, 4])
   // how do you get the size of the set?
   // how can you determine whether the set has a value?
+  const [,,thirdItem] = set
   return {
     // fill these values in...
-    size: set.length,
-    hasObj: set.indexOf(obj) !== -1,
-    hasFive: set.indexOf(5) !== -1,
-    thirdItem: set[2],
+    size: set.size,
+    hasObj: set.has(obj) !== -1,
+    hasFive: set.has(5) !== -1,
+    thirdItem,
   }
 }
-// log(setInfo())
+//console.log(setInfo())
 
 function removeDuplicates() {
   // given an array
@@ -49,15 +49,16 @@ function removeDuplicates() {
 
   // TODO: use a Set to do this
   // refactor the following
-  const uniqueArr = arr.filter((elem, index) => arr.indexOf(elem) === index)
-
+  //const uniqueArr = arr.filter((elem, index) => arr.indexOf(elem) === index)
+  const uniqueArr = Array.from(new Set(arr))
   return uniqueArr
 }
-// console.log(removeDuplicates())
+//console.log(removeDuplicates())
 
 function iterateSets() {
-  const set = new Set([1, 2, 3, 4])
-  for (const item of set) {
+  const set = new Set(['hey', 1, 2, 3, 4])
+  // for .. of
+  for (const item of set.entries()) {
     console.log(item)
   }
 }
@@ -68,7 +69,7 @@ function spreadSets() {
   const set = new Set([1, 2, 3, 4])
   const array = [...set]
   return array
-}
+  }
 // console.log(spreadSets())
 
 function restSet() {
@@ -77,7 +78,7 @@ function restSet() {
   const [first, second, ...rest] = set
   return rest
 }
-// console.log(restSet())
+console.log(restSet())
 
 // SOLUTION BELOW
 // No peeking!

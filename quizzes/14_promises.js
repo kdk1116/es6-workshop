@@ -1,5 +1,5 @@
 // callbacks()
-// promises()
+promises()
 
 function callbacks() {
   // refactor to promises
@@ -11,7 +11,7 @@ function callbacks() {
       cb(null, `success: ${result}`)
     })
   })
-
+ 
   // failing
   logResult(cb => {
     timeout(100, true, (error, result) => {
@@ -120,11 +120,12 @@ SOLUTIONS ARE BELOW
  */
 
 function promises() {
-  const successfulPromise = timeout(100).then(result => {
-    return `success: ${result}`
-  })
-
-  const failingPromise = timeout(100, true).then(null, error => {
+  const successfulPromise = timeout(100)
+  .then(result => {return `success: ${result}`})
+  // .then(result2 => {return `yay`})
+  const failingPromise = timeout(100, true)
+  //.catch(error => { //equivalent to line below
+  .then(null, error => {
     return Promise.reject(`failure: ${error}`)
   })
 
@@ -155,6 +156,12 @@ function promises() {
 
   function timeout(duration = 0, shouldReject = false) {
     return new Promise((resolve, reject) => {
+      // pify(Users.getUser)(function(err, result) {
+      //   if (err) {
+      //     return reject(err)
+      //   } 
+      //   resolve(result)
+      // }
       setTimeout(() => {
         if (shouldReject) {
           reject(`rejected after ${duration}ms`)
